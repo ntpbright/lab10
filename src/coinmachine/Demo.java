@@ -1,4 +1,4 @@
-package coinmachine;
+package lab10.src.coinmachine;
 import java.util.Scanner;
 
 /**
@@ -51,15 +51,18 @@ public class Demo {
 //				machine.getCount(), machine.getBalance(), currency);	
 		if (machine.isFull()) System.out.println("Machine is FULL.");
 	}
-	
+
 	/**
 	 * Run a console demo.
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
 		final int capacity = 10;  // how many coins the machine can hold
-		
 		CoinMachine machine = new CoinMachine( capacity );
+		CountUI countMachine = new CountUI(machine);
+		CoinMachineUI coinMachine = new CoinMachineUI(machine);
+		machine.addObserver(countMachine);
+		machine.addObserver(coinMachine);
 		Demo demo = new Demo();
 		//TODO add observers
 		demo.insertDialog(machine);

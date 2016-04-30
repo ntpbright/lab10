@@ -1,15 +1,15 @@
-package coinmachine;
+package lab10.src.coinmachine;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 
 /** 
  *  A coin purse contains coins.
  *  It has a capacity (maximum number of coins it can hold),
  *  and methods for inserting coins, getting the balance,
  *  and withdrawing coins.
- *  @author BTS and MRT
  */
-public class CoinMachine {
+public class CoinMachine extends Observable {
 	/** the coins it contains */
 	private List<Coin> coins;
 	/** max number of coins you can put in the machine */
@@ -61,6 +61,8 @@ public class CoinMachine {
 		if (m.getValue() <= 0) throw new IllegalArgumentException("Coin must have positive value");
 		boolean result = coins.add(m);
 		//TODO notify observers
+		super.setChanged();
+		super.notifyObservers(this);
 		return result;
 	}
 	

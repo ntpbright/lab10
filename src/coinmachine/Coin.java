@@ -1,4 +1,4 @@
-package coinmachine;
+package lab10.src.coinmachine;
 /**
  * A Coin represents metalic money with a value.
  */
@@ -15,7 +15,12 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 	public Coin(int value) {
 		this(value, "Baht");
 	}
-	
+	/**
+	 * Initialize a new Coin.
+	 * @param value is the value of the Coin
+	 * @param currency is the unit of the value
+	 * @pre the value is positive
+	 */
 	public Coin(int value, String currency) {
 		assert value > 0;  // if not, its YOUR fault
 		if (currency == null) throw new IllegalArgumentException("currency cannot be null");
@@ -56,14 +61,12 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 
 	/**
 	 * Two coins are equal if they have the same currency and value.
-	 * @param obj an Object to compare to this coin.
+	 * @param input an Object to compare to this coin.
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	@Override
-	public boolean equals(Object obj) {
-//TODO Write a correct equals method for Coin.
+	public boolean equals(Coin input) {
 //     You can assume that the currency is never null.
-		return this == obj;
+		return this.currency.equals(input.currency) && this.value == input.value;
 	}
 
 	/**
